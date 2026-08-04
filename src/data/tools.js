@@ -18,7 +18,7 @@ export const TOOLS = [
     name: 'Gemini',
     tagline: "Google's multimodal AI.",
     icon: '♊',
-    enabled: false,
+    enabled: true,
   },
   {
     id: 'notebooklm',
