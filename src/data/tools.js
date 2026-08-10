@@ -25,7 +25,7 @@ export const TOOLS = [
     name: 'NotebookLM',
     tagline: 'AI-powered research assistant.',
     icon: '📓',
-    enabled: false,
+    enabled: true,
   },
   {
     id: 'google-ai-studio',
