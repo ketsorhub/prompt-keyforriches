@@ -32,7 +32,7 @@ export const TOOLS = [
     name: 'Google AI Studio',
     tagline: 'App and website builder by Google.',
     icon: '🧪',
-    enabled: false,
+    enabled: true,
   },
   {
     id: 'google-antigravity',
