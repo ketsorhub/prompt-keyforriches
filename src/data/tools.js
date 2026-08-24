@@ -37,9 +37,9 @@ export const TOOLS = [
   {
     id: 'google-antigravity',
     name: 'Google Antigravity',
-    tagline: "Google's app builder.",
+    tagline: 'Agentic AI coding IDE by Google.',
     icon: '🚀',
-    enabled: false,
+    enabled: true,
   },
   {
     id: 'nano-banana',
