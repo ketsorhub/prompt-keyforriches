@@ -53,14 +53,14 @@ export const TOOLS = [
     name: 'Horizons',
     tagline: "Hostinger's AI app builder.",
     icon: '🌅',
-    enabled: false,
+    enabled: true,
   },
   {
     id: 'google-stitch',
     name: 'Google Stitch',
     tagline: 'AI-powered app design tool.',
     icon: '🧵',
-    enabled: false,
+    enabled: true,
   },
 ];
 
