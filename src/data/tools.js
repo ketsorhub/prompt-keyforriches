@@ -62,6 +62,20 @@ export const TOOLS = [
     icon: '🧵',
     enabled: true,
   },
+  {
+    id: 'perplexity',
+    name: 'Perplexity',
+    tagline: 'Cited answers and web research.',
+    icon: '🔎',
+    enabled: true,
+  },
+  {
+    id: 'midjourney',
+    name: 'Midjourney',
+    tagline: 'Image, character and product prompts.',
+    icon: '🎨',
+    enabled: true,
+  },
 ];
 
 export function getToolMeta(id) {
