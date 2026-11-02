@@ -7,6 +7,8 @@ import { googleAiStudioFlow } from './googleAiStudio.js';
 import { googleAntigravityFlow } from './googleAntigravity.js';
 import { horizonsFlow } from './horizons.js';
 import { googleStitchFlow } from './googleStitch.js';
+import { perplexityFlow } from './perplexity.js';
+import { midjourneyFlow } from './midjourney.js';
 
 export const FLOWS = {
   chatgpt: chatgptFlow,
@@ -18,4 +20,6 @@ export const FLOWS = {
   'google-antigravity': googleAntigravityFlow,
   horizons: horizonsFlow,
   'google-stitch': googleStitchFlow,
+  perplexity: perplexityFlow,
+  midjourney: midjourneyFlow,
 };
