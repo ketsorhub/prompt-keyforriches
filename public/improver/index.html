@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free AI Prompt Improver — Make Any Prompt Better</title>
+<meta name="description" content="Paste a weak AI prompt and get a stronger one in seconds. Free Prompt Improver for ChatGPT, Claude, Gemini, Perplexity and Midjourney. Runs in your browser, no signup." />
+<link rel="canonical" href="https://prompt.keyforriches.com/improver/" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" />
+<link rel="stylesheet" href="/nav.css" />
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f0f7f2;color:#1a2e1f;font-family:'Inter',Arial,sans-serif;line-height:1.6}
+main{max-width:900px;margin:0 auto;padding:32px 20px 48px}
+h1{font-size:34px;line-height:1.2;color:#142018;margin:0 0 10px}
+h2{font-size:22px;color:#142018;margin:36px 0 10px}
+h3{font-size:17px;color:#142018;margin:20px 0 6px}
+.lead{font-size:17px;color:#4a6650;margin:0 0 24px}
+.card{background:#fff;border:1px solid #c9e0ce;border-radius:12px;padding:22px}
+label{display:block;font-weight:700;margin:16px 0 6px;color:#142018}
+.hint{font-weight:400;color:#5a7a60;font-size:14px}
+textarea,input,select{width:100%;font:inherit;padding:11px 12px;border:1px solid #c9e0ce;border-radius:8px;background:#fff;color:#1a2e1f}
+textarea{min-height:130px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:700px){.row{grid-template-columns:1fr}h1{font-size:28px}}
+button{font:inherit;font-weight:700;cursor:pointer;border-radius:8px;border:0;padding:12px 22px}
+.go{background:#EF9F27;color:#111;margin-top:20px;font-size:16px}
+.go:hover{background:#ffb13f}
+.ghost{background:#fff;border:1px solid #c9e0ce;color:#142018}
+#result{display:none;margin-top:24px}
+pre{white-space:pre-wrap;word-wrap:break-word;background:#1e2a22;color:#f0f0f0;padding:18px;border-radius:10px;font:14px/1.55 Consolas,Menlo,monospace;margin:10px 0}
+ul.check{list-style:none;padding:0;margin:8px 0}
+ul.check li{padding:6px 0 6px 28px;position:relative}
+ul.check li:before{position:absolute;left:0;font-weight:800}
+ul.check li.ok:before{content:"\2713";color:#2a7a3b}
+ul.check li.miss:before{content:"\2717";color:#c0392b}
+.score{font-size:15px;color:#4a6650}
+footer{background:#e4f0e8;text-align:center;padding:20px;font-size:14px;color:#4a6650}
+footer a{color:#142018}
+.guide p,.guide li{max-width:72ch}
+</style>
+</head>
+<body>
+<div id="kfr-nav"></div>
+<main>
+<h1>Free AI <span style="color:#EF9F27">Prompt Improver</span></h1>
+<p class="lead">Paste any prompt you have written. We check what is missing and rewrite it into a clear, structured prompt you can copy straight into your AI. Nothing is sent anywhere: it all happens in your browser.</p>
+
+<section class="card" aria-label="Prompt Improver tool">
+<label for="p">1. Your prompt <span class="hint">(paste what you would normally type)</span></label>
+<textarea id="p" placeholder="Example: write a blog post about dogs"></textarea>
+<div class="row">
+<div><label for="t">2. Which AI?</label>
+<select id="t"><option>ChatGPT</option><option>Claude</option><option>Gemini</option><option>Perplexity</option><option>Midjourney</option><option>Other</option></select></div>
+<div><label for="g">Goal <span class="hint">(optional)</span></label><input id="g" type="text" placeholder="e.g. get more customers" /></div>
+<div><label for="a">Audience <span class="hint">(optional)</span></label><input id="a" type="text" placeholder="e.g. first-time dog owners" /></div>
+</div>
+<button class="go" id="go" type="button">Improve my prompt</button>
+</section>
+
+<section id="result" class="card" aria-live="polite">
+<h2 style="margin-top:0">Your improved prompt</h2>
+<pre id="out"></pre>
+<button class="ghost" id="copy" type="button">Copy improved prompt</button> <span id="copied" class="hint"></span>
+<h3>What we checked</h3>
+<p class="score" id="score"></p>
+<ul class="check" id="list"></ul>
+<p class="hint">Words in square brackets, like [your topic], are blanks. Replace them with your own details before you send the prompt.</p>
+</section>
+
+<section class="guide">
+<h2>How to write a good AI prompt</h2>
+<p>A prompt is simply the instruction you give an AI. The clearer the instruction, the better the answer. Most weak prompts fail for the same few reasons, and each one is easy to fix.</p>
+<h3>1. Give the AI a role</h3>
+<p>Tell the AI who it should be, for example &ldquo;You are an experienced travel writer.&rdquo; A role sets the tone, the vocabulary and the level of detail, so the answer sounds like an expert instead of a generic reply.</p>
+<h3>2. Add context</h3>
+<p>Explain the situation: who the answer is for, what you already know and why you need it. A short paragraph of background changes a vague answer into one that fits your real situation.</p>
+<h3>3. State one clear task</h3>
+<p>Begin with a strong action word such as write, compare, summarise or plan. One task per prompt works best. If you need several things, ask for them in separate steps.</p>
+<h3>4. Say what format you want</h3>
+<p>Do you want bullet points, a table, a short email or three headlines? If you do not say, the AI will guess. Naming the format and the length, for example &ldquo;under 200 words&rdquo;, saves you rewriting.</p>
+<h3>5. Set limits</h3>
+<p>Tell the AI what to avoid: no jargon, no made-up facts, no more than five items. Limits keep the answer focused and easier to trust.</p>
+<h3>6. Show an example</h3>
+<p>If you have a sample of the style you like, paste it in and say &ldquo;write in this style&rdquo;. One good example is often worth a whole paragraph of description.</p>
+<h3>7. Ask the AI to check itself</h3>
+<p>Finish with a request such as &ldquo;If anything is unclear, ask me questions first.&rdquo; This stops the AI from guessing and usually gives a better first answer.</p>
+<p>Want to build a prompt step by step instead? Try our <a href="/">free Prompt Maker</a>, which asks a few simple questions and writes the prompt for you.</p>
+</section>
+</main>
+<footer>&copy; 2026 Key For Riches &mdash; Prompt Improver is a free tool, no signup required. <a href="https://tools.keyforriches.com/">Explore more free tools</a></footer>
+<script src="/nav.js"></script>
+<script>
+(function () {
+  function has(re, s) { return re.test(s); }
+  function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
+  function words(s) { return s ? s.split(/\s+/).length : 0; }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  var RE = {
+    role: /\b(act as|you are an?|you're an?|pretend to be|as an? (expert|experienced|professional)|play the role)\b/i,
+    format: /\b(bullet|table|numbered|list of|steps|json|csv|outline|paragraphs?|headline|subject line|tweet|email|format|in \d+ (words|sentences|bullets|points)|under \d+|no more than \d+|at most \d+|max(imum)? \d+|\d+ (words|sentences|bullets|points|items|ideas|options|examples))\b/i,
+    constraints: /\b(don't|do not|avoid|never|must|only|without|no jargon|no more than|at most|at least|limit|exactly|keep it)\b/i,
+    example: /\b(for example|e\.g\.|such as|example:|like this|in the style of|similar to)\b/i,
+    context: /\b(because|so that|in order to|my (business|company|team|audience|customers|goal|site|website|product)|i am|i'm|i have|we are|we're|background|audience|for (a|an|my|our)\b)/i,
+    task: /^(please\s+)?(write|create|make|draft|generate|give|list|explain|summari[sz]e|compare|plan|build|design|suggest|help|tell|describe|analy[sz]e|translate|rewrite|improve|brainstorm|outline|find|calculate|show|what|how|why|who|when|which|can you|could you)\b/i
+  };
+
+  var MJ = {
+    style: /\b(photo|photograph|realistic|illustration|painting|watercolor|oil|3d|render|cinematic|anime|cartoon|sketch|pixel|minimal|vintage|retro|cyberpunk|surreal|style)\b/i,
+    light: /\b(light|lighting|sunset|sunrise|golden hour|neon|moody|backlit|soft|dramatic|shadow|glow|studio)\b/i,
+    comp: /\b(close-up|closeup|wide shot|portrait|aerial|macro|low angle|overhead|from above|centered|bokeh|depth of field|35mm|50mm|85mm|composition)\b/i,
+    params: /--(ar|v|style|stylize|chaos|no)\b/i
+  };
+
+  function improve(o) {
+    var raw = clean(o.prompt);
+    var target = o.target || 'Other';
+    var goal = clean(o.goal), aud = clean(o.audience);
+    if (!raw) return null;
+    if (target === 'Midjourney') return improveImage(raw, goal);
+
+    var checks = [
+      { key: 'role', label: 'Role (who the AI should be)', ok: has(RE.role, raw) },
+      { key: 'context', label: 'Context / audience', ok: !!aud || !!goal || has(RE.context, raw) || words(raw) >= 30 },
+      { key: 'task', label: 'A clear task', ok: has(RE.task, raw) },
+      { key: 'format', label: 'Output format and length', ok: has(RE.format, raw) },
+      { key: 'constraints', label: 'Limits (what to avoid)', ok: has(RE.constraints, raw) },
+      { key: 'example', label: 'An example or style reference', ok: has(RE.example, raw) }
+    ];
+    var miss = {};
+    checks.forEach(function (c) { miss[c.key] = !c.ok; });
+
+    var role = miss.role ? 'You are an experienced expert in [your topic]. Explain things clearly and practically.' : '(Keep the role already stated in your task.)';
+    var ctx = [];
+    if (aud) ctx.push('The audience is: ' + aud + '.');
+    if (goal) ctx.push('The goal is: ' + goal + '.');
+    if (!aud && !goal && miss.context) ctx.push('Background: [who this is for and why you need it].');
+    var task = cap(raw.replace(/\s*[.!?]*$/, '')) + '.';
+    var fmt = miss.format ? 'Format: [bullet points / short paragraphs / table], about [length], in plain simple English.' : '';
+    var lim = miss.constraints ? 'Rules: avoid jargon, do not invent facts, and say so if you are unsure.' : '';
+    var ex = miss.example ? 'Example of the style I like (optional): [paste a short sample].' : '';
+
+    var tail = {
+      ChatGPT: 'Before you answer, ask me up to 3 short questions if anything is unclear.',
+      Claude: 'If anything is ambiguous, ask me before you begin, then give your answer.',
+      Gemini: 'Work through this step by step, then give the final answer under a clear heading.',
+      Perplexity: 'Use up-to-date sources, cite each one, and note where sources disagree.',
+      Other: 'If anything is unclear, ask me questions first.'
+    }[target] || 'If anything is unclear, ask me questions first.';
+
+    var parts, out;
+    if (target === 'Claude') {
+      parts = [];
+      if (miss.role) parts.push('<role>' + role + '</role>');
+      if (ctx.length) parts.push('<context>' + ctx.join(' ') + '</context>');
+      parts.push('<task>' + task + '</task>');
+      var rules = [fmt, lim, ex].filter(Boolean).join('\n');
+      if (rules) parts.push('<requirements>\n' + rules + '\n</requirements>');
+      parts.push(tail);
+      out = parts.join('\n\n');
+    } else {
+      parts = [];
+      if (miss.role) parts.push('Role: ' + role);
+      if (ctx.length) parts.push('Context: ' + ctx.join(' '));
+      parts.push('Task: ' + task);
+      if (fmt) parts.push(fmt);
+      if (lim) parts.push(lim);
+      if (ex) parts.push(ex);
+      parts.push(tail);
+      out = parts.join('\n\n');
+    }
+    var have = checks.filter(function (c) { return c.ok; }).length;
+    return { text: out, checks: checks, score: have, total: checks.length };
+  }
+
+  function improveImage(raw, goal) {
+    var checks = [
+      { label: 'Clear subject', ok: words(raw) >= 2 },
+      { label: 'Art style or medium', ok: has(MJ.style, raw) },
+      { label: 'Lighting or mood', ok: has(MJ.light, raw) },
+      { label: 'Camera angle or composition', ok: has(MJ.comp, raw) },
+      { label: 'Parameters (--ar etc.)', ok: has(MJ.params, raw) }
+    ];
+    var base = raw.replace(/\s*[.!?]*$/, '');
+    var bits = [base];
+    if (!checks[1].ok) bits.push('[style: e.g. cinematic photograph / watercolor illustration]');
+    if (!checks[2].ok) bits.push('[lighting: e.g. soft golden hour light]');
+    if (!checks[3].ok) bits.push('[composition: e.g. wide shot, shallow depth of field]');
+    if (goal) bits.push('mood: ' + goal);
+    var text = bits.join(', ') + (checks[4].ok ? '' : ' --ar 16:9 --stylize 250');
+    return { text: text, checks: checks, score: checks.filter(function (c) { return c.ok; }).length, total: checks.length };
+  }
+
+  if (typeof window !== 'undefined') window.KFRImprove = improve;
+
+  if (typeof document !== 'undefined' && document.getElementById('go')) {
+    var $ = function (id) { return document.getElementById(id); };
+    $('go').addEventListener('click', function () {
+      var r = improve({ prompt: $('p').value, target: $('t').value, goal: $('g').value, audience: $('a').value });
+      if (!r) { $('p').focus(); return; }
+      $('out').textContent = r.text;
+      $('score').textContent = 'Your original prompt covered ' + r.score + ' of ' + r.total + ' key parts.';
+      var ul = $('list'); ul.textContent = '';
+      r.checks.forEach(function (c) {
+        var li = document.createElement('li');
+        li.className = c.ok ? 'ok' : 'miss';
+        li.textContent = c.label + (c.ok ? ' — found' : ' — added for you');
+        ul.appendChild(li);
+      });
+      $('result').style.display = 'block';
+      $('copied').textContent = '';
+      $('result').scrollIntoView({ behavior: 'smooth' });
+    });
+    $('copy').addEventListener('click', function () {
+      var t = $('out').textContent;
+      function done() { $('copied').textContent = 'Copied!'; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(done, function () { $('copied').textContent = 'Select the text above and press Ctrl+C.'; });
+      } else { $('copied').textContent = 'Select the text above and press Ctrl+C.'; }
+    });
+  }
+})();
+</script>
+</body>
+</html>
