@@ -15,7 +15,8 @@ export default function Header() {
         </div>
 
         <nav className="header-nav">
-          <Link to="/">Home</Link>
+          <Link to="/">Prompt Maker</Link>
+          <a href="/improver/">Prompt Improver</a>
           <a href="https://tools.keyforriches.com/">More Tools</a>
         </nav>
       </div>
